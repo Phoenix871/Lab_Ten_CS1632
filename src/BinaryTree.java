@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * @author Carter Jorgensen
  * Date: 11 / 23 / 2026
@@ -150,5 +152,66 @@ public class BinaryTree<T extends Comparable<T>> {
                 return currNode.setRight(doRecursiveRemove(dValue,currNode.getRight())); //run the cycle once again
             }
         }
+    }
+
+    /**
+     * A method that returns the height of the tree
+     * @param currNode The node we are starting at
+     * @return The final height of the tree
+     */
+    public int calcTreeHeight(Node<T> currNode) {
+        //checks if this node is even real
+        if (currNode == null) {
+            return  0; //not very tall then
+        }
+        else { //There's something here
+            //recursively calculates the height of the tree
+            return 1 + Math.max(calcTreeHeight(currNode.getLeft()), calcTreeHeight(currNode.getRight()));
+        }
+    }
+
+    /**
+     * A method to print the tree in its entirety
+     */
+    public void printTree() {
+        //First call of recursive method
+        recursivePrintTree(root, 0);
+    }
+
+    /**
+     * A helper method that recursively prints out the contents of the tree
+     * @param currNode The current node that it is at
+     * @param level how high the tree currently is
+     */
+    private void recursivePrintTree(Node<T> currNode, int level) {
+        //check to make sure currNode isn't null
+        if (currNode != null) {
+            recursivePrintTree(currNode.getLeft(), level+1);
+
+            //loop through all the levels, just to look neat
+            for (int i = 0; i < level; i++) {
+                System.out.print(" ");
+            }
+
+            System.out.println(currNode.getData());
+
+            //call recursivePrintTree again
+            recursivePrintTree(currNode.getRight(), level+1);
+        }
+    }
+
+    public ArrayList<T> getArrayListOfValues() {
+        return recursiveArrayListOfValues(root, new ArrayList<T>());
+    }
+
+    private ArrayList<T> recursiveArrayListOfValues(Node<T> currNode, ArrayList<T> tempArray) {
+        //check if currNode exists
+        if (currNode == null) {
+            return tempArray;
+        }
+
+        tempArray = recursiveArrayListOfValues(currNode.getLeft(), tempArray); //run through all the left nodes
+        tempArray.add(currNode.getData()); //Add the current node to the list
+        return recursiveArrayListOfValues(currNode.getRight(), tempArray); //run through all the right nodes
     }
 }

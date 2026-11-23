@@ -74,4 +74,13 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     public int compareTo(Node<T> other) {
         return data.compareTo(other.getData());
     }
+
+    /**
+     * Simple method to print Node using their data values
+     * @return The data value of the node
+     */
+    @Override
+    public String toString() {
+        return (String) data;
+    }
 }
