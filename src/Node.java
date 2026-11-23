@@ -3,7 +3,7 @@
  * Date: 11 / 23 / 2026
  * Purpose: help implement binary trees for lab 10 in CS 1632
  */
-public class Node<T> {
+public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     //Attributes
     private T data; //the data stored
     private Node<T> left; //the left child
@@ -37,5 +37,15 @@ public class Node<T> {
      */
     public Node<T> getLeft() {
         return this.left;
+    }
+
+    /**
+     * A method to compare nodes by whatever values they have
+     * @param other the object to be compared.
+     * @return Whether the object is larger, smaller, or the same
+     */
+    @Override
+    public int compareTo(Node<T> other) {
+        return data.compareTo(other.getData());
     }
 }
