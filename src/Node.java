@@ -24,6 +24,14 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     }
 
     /**
+     * A method to set a new data variable
+     * @param newData The new data to be stored
+     */
+    public void setData(T newData) {
+        this.data = newData;
+    }
+
+    /**
      * A get method for the right child
      * @return The right child
      */
@@ -32,11 +40,27 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     }
 
     /**
+     * A method to set a new right node
+     * @param newRight The new right node
+     */
+    public void setRight(Node<T> newRight) {
+        this.right = newRight;
+    }
+
+    /**
      * A get method for the left child
      * @return The left child
      */
     public Node<T> getLeft() {
         return this.left;
+    }
+
+    /**
+     * A method to set a new left node
+     * @param newLeft The new left node
+     */
+    public void setLeft(Node<T> newLeft) {
+        this.left = newLeft;
     }
 
     /**

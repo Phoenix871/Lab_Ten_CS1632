@@ -54,4 +54,35 @@ public class BinaryTree<T extends Comparable<T>> {
         //runs the method again with the right node
         return doRecursiveFind(dValue, currNode.getRight());
     }
+
+    /**
+     * A method to insert a new node into the binary tree
+     * @param dValue The value of the new node you wish to insert
+     */
+    public void insertNode(T dValue) {
+        root = doRecursiveInsert(dValue, root); //calls the recursive method using the root node
+    }
+
+    /**
+     * A helper method to recursively insert a new node into the tree
+     * @param dValue The value of the node to be inserted
+     * @param currNode The current node being checked
+     * @return A new node at the correct position in the tree
+     */
+    private Node<T> doRecursiveInsert(T dValue, Node<T> currNode) {
+        //Checks to see if this node is completely blank or not
+        if (currNode == null) {
+            return new Node<>(dValue); //returns a new node with no children
+        }
+        //checks if the data of the current node is greater than the value we are trying to insert
+        if (currNode.getData().compareTo(dValue) > 0) {
+            currNode.setLeft(doRecursiveInsert(dValue, currNode.getLeft())); //sets the left using the result of the next recursion
+        }
+        //The data of current node is less than the value to be added
+        else {
+            currNode.setRight(doRecursiveInsert(dValue, currNode.getRight())); //sets the left using the result of the next recursion
+        }
+        //Return the new root node of the tree
+        return currNode;
+    }
 }
