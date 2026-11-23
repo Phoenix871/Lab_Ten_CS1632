@@ -102,7 +102,7 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public void removeNode(T dValue) {
-
+        doRecursiveRemove(dValue, root);
     }
 
     /**
@@ -190,7 +190,7 @@ public class BinaryTree<T extends Comparable<T>> {
 
             //loop through all the levels, just to look neat
             for (int i = 0; i < level; i++) {
-                System.out.print(" ");
+                System.out.print("     ");
             }
 
             System.out.println(currNode.getData());
@@ -213,5 +213,13 @@ public class BinaryTree<T extends Comparable<T>> {
         tempArray = recursiveArrayListOfValues(currNode.getLeft(), tempArray); //run through all the left nodes
         tempArray.add(currNode.getData()); //Add the current node to the list
         return recursiveArrayListOfValues(currNode.getRight(), tempArray); //run through all the right nodes
+    }
+
+    /**
+     * Simple method to get the root of the tree
+     * @return the root of the tree
+     */
+    public Node<T> getRoot() {
+        return this.root;
     }
 }
