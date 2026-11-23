@@ -85,4 +85,70 @@ public class BinaryTree<T extends Comparable<T>> {
         //Return the new root node of the tree
         return currNode;
     }
+
+    /**
+     * Simple private helper method that finds the next biggest node
+     * @param currNode The node you are starting at
+     * @return The next biggest node
+     */
+    private Node<T> doFindNextBiggestPrev(Node<T> currNode) {
+        //Loop until there are no children two nodes down from currentNode
+        while (currNode.getLeft().getLeft() != null) {
+            currNode = currNode.getLeft(); //Set currNode to its left child
+        }
+        return currNode; //return the new currNode
+    }
+
+    public void removeNode(T dValue) {
+
+    }
+
+    /**
+     * A private helper method to recursively handle the removal of a node
+     * @param dValue The value of the node to be removed
+     * @param currNode The current node being searched
+     * @return The new node to be searched
+     */
+    private Node<T> doRecursiveRemove(T dValue, Node<T> currNode) {
+        //checks if current node is blank
+        if (currNode == null) {
+            return null;
+        }
+
+        //create a compare value from this nodes data and the one we want to remove
+        int compareValue = currNode.getData().compareTo(dValue);
+
+        //check if this is the node to be removed
+        if (compareValue == 0) {
+            //check if there is a left child or not
+            if (currNode.getLeft() == null) {
+                return currNode.getRight();
+            }
+            //Check if there is a right child or not
+            if (currNode.getRight() == null) {
+                return currNode.getLeft();
+            }
+            //if neither child is null, check if the right child is left child is null
+            if (currNode.getRight().getLeft() == null) {
+                currNode.setData(currNode.getRight().getData()); //swaps data
+                currNode.setRight(currNode.getRight().getRight()); //swap nodes
+                return currNode;
+            }
+            //Get the next biggest previous node (a bit of a confusing sentence)
+            Node<T> nextBiggestPrevious = doFindNextBiggestPrev(currNode.getRight());
+            currNode.setData(nextBiggestPrevious.getLeft().getData()); //swap data
+            nextBiggestPrevious.setLeft(nextBiggestPrevious.getLeft().getRight()); //swaps nodes
+            return currNode; //returns current node
+        }
+        else { //All else fails, means the value of the current node is bigger or smaller than we want
+            //See if the compare Value is larger
+            if (compareValue > 0) {
+                return currNode.setLeft(doRecursiveRemove(dValue, currNode.getLeft())); // run the cycle again
+            }
+            //Value must be smaller
+            else {
+                return currNode.setRight(doRecursiveRemove(dValue,currNode.getRight())); //run the cycle once again
+            }
+        }
+    }
 }

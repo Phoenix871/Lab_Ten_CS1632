@@ -43,8 +43,9 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
      * A method to set a new right node
      * @param newRight The new right node
      */
-    public void setRight(Node<T> newRight) {
+    public Node<T> setRight(Node<T> newRight) {
         this.right = newRight;
+        return right;
     }
 
     /**
@@ -59,8 +60,9 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
      * A method to set a new left node
      * @param newLeft The new left node
      */
-    public void setLeft(Node<T> newLeft) {
+    public Node<T> setLeft(Node<T> newLeft) {
         this.left = newLeft;
+        return left;
     }
 
     /**
