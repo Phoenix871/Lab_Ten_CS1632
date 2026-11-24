@@ -11,6 +11,7 @@ public class Main {
         BinaryTree<Integer> bTreeUno = generateRandomTree(100);
         bTreeUno.printTree();
         ArrayList<Integer> bTreeToArray = bTreeUno.getArrayListOfValues();
+        System.out.println(bTreeToArray);
 
     }
 

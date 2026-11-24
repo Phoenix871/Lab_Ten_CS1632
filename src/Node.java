@@ -81,6 +81,6 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
      */
     @Override
     public String toString() {
-        return (String) data;
+        return data.toString();
     }
 }
