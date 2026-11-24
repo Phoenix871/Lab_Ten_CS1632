@@ -8,11 +8,13 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        BinaryTree<Integer> bTreeUno = generateRandomTree(100);
-        bTreeUno.printTree();
-        ArrayList<Integer> bTreeToArray = bTreeUno.getArrayListOfValues();
-        System.out.println(bTreeToArray);
+        BinaryTree<Integer> bTreeUno = generateRandomTree(10000);
+        bTreeUno.findNode(500);
+        System.out.println("Searched: " + bTreeUno.numNodesVisited + " nodes");
 
+        //bTreeUno.printTree();
+        //ArrayList<Integer> bTreeToArray = bTreeUno.getArrayListOfValues();
+        //System.out.println(bTreeToArray);
     }
 
     public static BinaryTree<Integer> generateRandomTree(int length) {

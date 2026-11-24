@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class BinaryTree<T extends Comparable<T>> {
     //Attributes
     private Node<T> root; //The tippy top of the tree
+    public int numNodesVisited; //just for lab purposes
 
     //Constructor
     /**
@@ -15,6 +16,7 @@ public class BinaryTree<T extends Comparable<T>> {
      */
     public BinaryTree() {
         this.root = null;
+        numNodesVisited = 0;
     }
 
     //Methods
@@ -24,6 +26,7 @@ public class BinaryTree<T extends Comparable<T>> {
      * @return The node if there is one
      */
     public Node<T> findNode(T dValue) {
+        numNodesVisited = 0; //reset number of Nodes visited
         //Starts the recursive cycle with the rood node
         return doRecursiveFind(dValue, root);
     }
@@ -37,6 +40,7 @@ public class BinaryTree<T extends Comparable<T>> {
     private Node<T> doRecursiveFind(T dValue, Node<T> currNode) {
         //Checks to see if there is no value/node present at the current node
         if (currNode == null) {
+            numNodesVisited++;
             return null;
         }
 
@@ -45,15 +49,18 @@ public class BinaryTree<T extends Comparable<T>> {
 
         //Checks if this is the node you are looking for
         if (compareValue == 0) {
+            numNodesVisited++;
             return currNode; //returns the node
         }
 
         //Checks if the node you are looking for has a greater value than the current node
         if (compareValue > 0) {
+            numNodesVisited++;
             return doRecursiveFind(dValue, currNode.getLeft()); //runs the method again with the left child
         }
 
         //runs the method again with the right node
+        numNodesVisited++;
         return doRecursiveFind(dValue, currNode.getRight());
     }
 
